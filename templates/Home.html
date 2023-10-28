@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+
+<!-- head Block -->
+{% block head  %}
+<title>ToDo: List - Home</title>
+{% endblock  %}
+{% block body %}
+
+<div class="w-full flex flex-col items-center justify-center">
+        <form method="post" id="add_task" class="flex items-center justify-center w-full md:w-340 bg-card p-2 md:p-4 rounded-md shadow-md">
+        <input
+        class="w-full h-full outline-none border-none bg-transparent text-black placeholder:text-gray-500 text-lg font-semibold"
+        type="text" name="todo_input" id="todo_input" placeholder="Type Here...!">
+        <button
+        class ="px-3 py-1 outline-none border-none text-white text-base font-semibold rounded-md bg-emerald-400 active:scale-75 transition-all duration-200 ease-out" 
+            type="submit">Add</button>
+    </form>
+
+    <div class="w-full md:w-656 mt-12 p-2 md:p-4 rounded-md border-2 border-card">
+
+        {% if tasks %} {% for task in tasks %}
+        <div class="w-full p-2 px-4 rounded-md shadow-md bg-smallcard flex items-center justify-between mb-2 cursor-pointer">
+            <p class="textgray-200 text-xl font-semibold">{{task.data}}</p>
+            <a href="/delete/{{task.id}}">
+                <i class='bx bxs-trash text-red-400 active:scale-75 transition-all duration-200 ease-out'></i> 
+            </a>
+        </div>
+
+        {% endfor %}{% else %}
+        <div class="w-full items-center flex justifly-center flex-col">
+            <p class="text-2xl text-gray-200 font-semibold capitalize tracking-wider mb-3"
+            >
+            No Tasks
+            </p>
+            <img
+            class='w-225'
+            src="{{url_for('static', filename='dist/img/nodata.svg')}}"
+            alt="">
+        </div>
+        {% endif %}
+
+    
+
+
+        
+
+
+    </div>
+</div>
+
+
+<!--<h1> uji coba = Hi , new body block</h1>  -->
+{% endblock %}
